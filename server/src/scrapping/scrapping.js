@@ -28,7 +28,7 @@ const getCardsImages = async cards => {
   for (const card of cards) {
     await page.goto('https://scryfall.com/');
 
-    await page.fill('#q', card.name);
+    await page.fill('#q', card.name + ' lang:es');
     await page.press('#q', 'Enter');
 
     // Esperar a que los resultados se carguen
@@ -46,6 +46,7 @@ const getCardsImages = async cards => {
         const imagePage = await context.newPage();
         await imagePage.goto(cardFrontImageUrl);
         await downloadImage(cardFrontImageUrl, card.name);
+        await page.goto('https://scryfall.com/');
       } else {
         console.error('El atributo data-card-image-front no se encontró.');
       }
