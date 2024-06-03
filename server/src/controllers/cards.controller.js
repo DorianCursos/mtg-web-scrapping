@@ -1,10 +1,11 @@
-const getCardsImages = require('../scrapping/scrapping');
+const getCardsImages = require('../api/getCardsImages');
 
 const controller = {};
 
 controller.getCardsInfo = (req, res) => {
   getCardsImages(req.body);
-  res.end();
+
+  res.json('ok');
 };
 
 module.exports = controller;
